@@ -10,7 +10,7 @@ object StarshineVersions {
     val mapper = jacksonMapperBuilder()
         .addModule(kotlinModule())
         .addModule(JavaTimeModule())
-        .disable(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES)
+        .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
         .build()
 
 }
