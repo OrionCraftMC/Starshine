@@ -11,10 +11,11 @@ data class ClientVersionModel(
     val downloads: Map<String, ClientVersionDownloadModel>,
     val libraries: List<ClientVersionLibraryModel>,
     @JsonProperty("minecraftArguments") internal val legacyMinecraftArguments: ClientVersionArgumentModel?,
+    @JsonProperty("arguments") internal val modernMinecraftArguments: ClientVersionArgumentModel?,
 ) {
 
     val minecraftArguments: ClientVersionArgumentModel
-        get() = legacyMinecraftArguments ?: TODO("Parse Modern Arguments")
+        get() = legacyMinecraftArguments ?: modernMinecraftArguments ?: throw IllegalStateException("No arguments found")
 
 }
 
