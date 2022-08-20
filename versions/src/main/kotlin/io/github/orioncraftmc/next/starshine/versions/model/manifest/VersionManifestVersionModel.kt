@@ -1,6 +1,9 @@
 package io.github.orioncraftmc.next.starshine.versions.model.manifest
 
 import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.module.kotlin.readValue
+import io.github.orioncraftmc.next.starshine.versions.StarshineVersions
+import io.github.orioncraftmc.next.starshine.versions.model.version.ClientVersionModel
 import java.net.URL
 import java.time.Instant
 
@@ -12,4 +15,9 @@ data class VersionManifestVersionModel(
     val releaseTime: Instant,
     @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT) val complianceLevel: Boolean,
     val sha1: String
-)
+) {
+
+    val clientVersionModel by lazy {
+        StarshineVersions.mapper.readValue<ClientVersionModel>(url)
+    }
+}
