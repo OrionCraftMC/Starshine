@@ -1,16 +1,20 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.7.20-Beta"
+    kotlin("jvm") version "1.7.20-Beta" apply false
 }
 
-group = "io.github.orioncraftmc.next"
-version = "1.0-SNAPSHOT"
+subprojects {
+    group = "io.github.orioncraftmc.next"
+    version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-}
+    this.apply(plugin="org.jetbrains.kotlin.jvm")
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "18"
+    this.repositories {
+        mavenCentral()
+    }
+
+    this.tasks.withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "18"
+    }
 }
